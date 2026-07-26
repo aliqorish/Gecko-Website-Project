@@ -19,6 +19,7 @@
             }
             body {
                   background-color: #1a1f27; 
+                  color:#dbe9dc;
             }
 
             .navbar-custom {
@@ -39,6 +40,19 @@
                   height: 2px;
                   background-color: #2d8b32;
                   opacity: 0.5;
+            }
+            label,
+            .form-label {
+                color: #dbe9dc;
+            }
+
+            .form-text,
+            .text-muted {
+                color: #bccebe ;
+            }
+
+            .invalid-feedback {
+                color: #ff6b6b;
             }
         </style>
 
@@ -63,6 +77,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Create</a>
                         </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <form method="post" action="{% url 'logout' %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="nav-link btn btn-link">Logout</button>
+                                </form>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="login/">Login</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
