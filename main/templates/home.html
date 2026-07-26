@@ -1,3 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title%} Home {% endblock%}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <p>Here's your training plan for today:</p>
+        <a href="{% url 'today' %}" class="btn btn-primary mb-4">View Today's Plan</a>
+
+        <div class="d-flex gap-2">
+            <a href="{% url 'plan' %}" class="btn btn-outline-light">Weekly Overview</a>
+            <a href="{% url 'edit' %}" class="btn btn-outline-light">Edit Plan</a>
+        </div>
+        </ul>
+    {% else %}
+         <h2 class="mb-4"> Track your weekly training plan, day by day.</h2>
+         <h3 class="mb-3">Start by registering or logging in: <br> <a href = "{% url 'register' %}">Register </a> <br> <a href= "{% url 'login' %}">Login</a></h3>
+    {% endif %}
+{% endblock %}

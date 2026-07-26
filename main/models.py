@@ -21,7 +21,8 @@ class Day(models.Model):
         ordering = ["user","day"]
 
 class Workout(models.Model):
-    tday = models.ForeignKey(Day, on_delete=models.CASCADE)
+    tday = models.ForeignKey(Day, on_delete=models.CASCADE, related_name="workouts")
     name = models.CharField(max_length = 200)
-    sets = models.IntegerField(blank = True)
-    reps = models.IntegerField(blank = True)
+    sets = models.IntegerField(blank=True, null=True)
+    reps = models.IntegerField(blank=True, null=True)
+    done = models.BooleanField(default = False)

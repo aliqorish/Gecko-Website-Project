@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} Training Plan {%endblock%}
+{% block content %}
+<h2 class="mb-4">Your Training Week</h2>
+    <table class="table table-dark table-bordered">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Workout</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in days %}
+                <tr>
+                    <td>{{ d.get_day_display}}</td>
+                    <td>{{ d.todo }}</td>
+                </tr>
+            {% endfor %}    
+        </tbody>
+    </table>
+    {% for d in days %}
+        <h3 class="mb-4">{{d.get_day_display}}: {{d.todo}}</h3>
+        <p>
+            {% for workout in d.workouts.all %}
+                    {{ workout.name }} <br>
+            {% endfor %}
+        </p>
+    {% endfor %}        
+{% endblock %}
