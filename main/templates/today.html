@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% block title %} Today's Plan {% endblock %}
 {% block content %}
-    <h2 class="mb-4">Today {{ today_date|date:"l, F j" }}</h2>
-    <h3 class="mb-3">{{ d.get_day_display }}: {{ d.todo }}</h3>
+    {% if user.is_authenticated %}
+        <h2 class="mb-4">Today {{ today_date|date:"l, F j" }}</h2>
+        <h3 class="mb-3">{{ d.get_day_display }}: {{ d.todo }}</h3>
 
-    <ul class="list-unstyled">
-        {% for workout in d.workouts.all %}
-            <li>{{ workout.name }}</li>
-        {% endfor %}
-    </ul>
+        <ul class="list-unstyled">
+            {% for workout in d.workouts.all %}
+                <li>{{ workout.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3 class="mb-3"> Please login or register to create and view your training plan.</h3> 
+    {% endif %}        
 {% endblock %}
